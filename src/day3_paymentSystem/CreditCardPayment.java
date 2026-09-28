@@ -11,6 +11,13 @@ public class CreditCardPayment implements Payable{
 
     @Override
     public void processPayments(double amount) {
+
+        // Έλεγχος εξαίρεσης
+        if (amount <= 0) {
+            //δημιουργία αντικειμένου σφάλματος
+            throw new InvalidAmountException("Σφάλμα: Το ποσό πληρωμής πρέπει να είναι μεγαλύτερο του μηδενός!");
+        }
+
         System.out.println("Επεξεργασία πληρωμής " + amount + "€ με Πιστωτική Kάρτα.");
         System.out.println("Κάτοχος: " + cardHolder + " | Αριθμός Κάρτας: ****" + cardNumber.substring(cardNumber.length() - 4));  //substring για εμφάνιση μόνο 4 τελευταίων στοιχείων του αριθμού κάρτας
     }
